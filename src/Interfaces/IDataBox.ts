@@ -1,4 +1,4 @@
-export default interface DataboxInterface {
+export default interface IDatabox {
     status: number;
     data: unknown;
 }

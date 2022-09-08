@@ -1,9 +1,9 @@
 import axios, { AxiosError } from 'axios';
-import MsgApiInterface from '../Interfaces/IMsgApi';
-import DataboxInterface from '../Interfaces/IDataBox';
+import IMsgApi from '../Interfaces/IMsgApi';
+import IDatabox from '../Interfaces/IDataBox';
 
-export default async function getWeather(city: string): Promise<DataboxInterface> {
-    const result: DataboxInterface = { status: 0, data: null };
+export default async function getWeather(city: string): Promise<IDatabox> {
+    const result: IDatabox = { status: 0, data: null };
 
     try {
         const r = await axios(
@@ -18,7 +18,7 @@ export default async function getWeather(city: string): Promise<DataboxInterface
         } else if (
             err.response &&
             err.response.status === 404 &&
-            (err.response.data as MsgApiInterface).message === 'city not found'
+            (err.response.data as IMsgApi).message === 'city not found'
         ) {
             result.status = 2;
         } else throw new Error(err.message);
